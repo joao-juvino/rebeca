@@ -18,7 +18,7 @@
     </div>
     <div>
       <img src="images/img-1.png" alt="" />
-      <!-- <small> Charmandar </small> -->
+      <small> Fotografar é atribuir importância </small>
     </div>
     <div>
       <img src="images/img-2.png" alt="" />
@@ -39,12 +39,37 @@
     <div class="hard"></div>
     <div class="hard">Amo você <small>~ seu João &hearts; </small></div>
   </div>
+  <audio id="bg-music" autoplay loop>
+    <source src="music/music-1.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
 
   <script src="jquery.js"></script>
   <script src="turn.js"></script>
+
   <script>
-    $(".flipbook").turn();
-  </script>
+    const musicFiles = {
+      1: "musics/music-1.mp3",
+      2: "musics/music-2.mp3",
+      3: "musics/music-3.mp3",
+      4: "musics/music-4.mp3",
+      5: "musics/music-5.mp3",
+    };
+  
+    const audioElement = document.getElementById("bg-music");
+  
+    $(".flipbook").turn({
+      when: {
+        turned: function (event, page) {
+          const newSrc = musicFiles[page];
+          if (newSrc) {
+            audioElement.src = newSrc;
+            audioElement.play();
+          }
+        }
+      }
+    });
+  </script>  
 </body>
 
 </html>
